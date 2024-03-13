@@ -6,6 +6,7 @@ try {
 
 
   const departmentUsername = req.departmentUsername;
+  departmentUsername
   const department = await departmentModels.findOne({
     username: departmentUsername,
   });
@@ -24,7 +25,7 @@ try {
 } catch (error) {
 
   console.log(error);
-  
+
 }
   
   
