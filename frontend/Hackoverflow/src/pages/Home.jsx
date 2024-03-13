@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 const Home = () => {
-    const [data,setData] = useState(true)
     const navigate = useNavigate()
     const toAdmin =  ()=>{
             navigate('/adminAuth')
