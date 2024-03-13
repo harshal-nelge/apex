@@ -19,6 +19,7 @@ const departmentSchema = mongoose.Schema({
                 type:String,
                 required:true
             },
+
             taskId:{
                 type:Number,
                 required:true
@@ -26,11 +27,57 @@ const departmentSchema = mongoose.Schema({
             
             description:{
                 type:String,
-            }
+            },
+            taskLongitude:{
+                type:String,
+                required:true
+            },
+            taskLatitude:{
+                type:String,
+                required:true
+            },
+
+
+            
+            underGroundInfrastructure:{
+                type:Boolean,
+                default:false
+            },
+            roadWork:{
+                type:Boolean,
+                default:false
+            },
+            publicSpaceEnhacement:{
+                type:Boolean,
+                default:false
+            },
+            underWaterConstruction:{
+                type:Boolean,
+                default:false
+            },
+            underGroundInfrastructure:{
+                type:Boolean,
+                default:false
+            },
+            demolition:{
+                type:Boolean,
+                default:false
+            },
+            greenInfrastructureProject:{
+                type:Boolean,
+                default:false
+            },
+            electricalServices:{
+                type:Boolean,
+                default:false
+            },
+            
 
         }
     ]
 
+},{
+    timestamps:true
 })
 
 export default mongoose.model("departments", departmentSchema);
