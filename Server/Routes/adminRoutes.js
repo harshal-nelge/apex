@@ -1,8 +1,7 @@
 import express from "express";
-import { validateDepartment } from "../Middlewares/validateDepartment";
-import { departmentDashboardController } from "../Controllers/departmentControllers";
-import { validateAdmin } from "../Middlewares/validateAdmin";
-import { adminDashboardController } from "../Controllers/adminControllers";
+
+import { validateAdmin } from "../Middlewares/validateAdmin.js";
+import { adminDashboardController } from "../Controllers/adminControllers.js";
 
 const router = express.Router();
 

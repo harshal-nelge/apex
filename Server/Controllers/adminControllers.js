@@ -1,4 +1,4 @@
-import adminModels from "../Model/admin.models";
+import adminModels from "../Model/admin.models.js";
 
 export const adminDashboardController = async (req, res) => {
   try {
@@ -15,7 +15,7 @@ export const adminDashboardController = async (req, res) => {
   else{
 
     res.send("Unauthorized login, please login again")
-    
+
   }
   
   } catch (error) {
