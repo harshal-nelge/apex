@@ -7,7 +7,7 @@ const Home = () => {
             navigate('/adminAuth')
     }
     const toDepartment = () =>{
-        navigate('/departmentAuth')
+        navigate('/departmentDashBoard')
     }
     
     
@@ -15,7 +15,7 @@ const Home = () => {
     <div >
       <div className='flex justify-center items-center space-x-16'>
           <button className=' px-6 py-3 bg-black text-white' onClick={toAdmin}>Admin</button>
-          <button className=' px-6 py-3 bg-black text-white' onClick={toDepartment}>Admin</button>
+          <button className=' px-6 py-3 bg-black text-white' onClick={toDepartment}>Department</button>
 
       </div>
     </div>
