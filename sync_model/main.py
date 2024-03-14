@@ -5,8 +5,7 @@ import spacy
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
-
+CORS(app, resources={r"/nlp-model": {"origins": "http://localhost:5173"}})
 
 nlp = spacy.load("en_core_web_sm")
 
@@ -30,17 +29,27 @@ def similar_description(new_string, database_string):
 
 @app.route("/nlp-model", methods=["POST"])
 def run_nlp_model():
-    data = request.json
-    new_string = data["new_string"]
+    try:
+        data = request.json
+        new_string = data.get("new_string")
 
-    database_string = ("Efficient underground pipelining and ground digging services utilizing advanced trenchless methods. Our team employs techniques such as horizontal directional drilling to install pipelines with precision and minimal surface disruption",
-                       "footpath enhancement services, including fencing installation and coloring for improved aesthetics and safety. Our skilled team utilizes advanced techniques, including ground excavation when necessary, to install durable fencing and apply vibrant coloring with precision and minimal disruption",
-                       "Expert electrical installation services for bridges, ensuring safe and reliable power supply. Our skilled team utilizes advanced techniques and high-quality materials to implement electrical infrastructure with precision and durability",
-                       "erosion control and slope stabilization services for construction sites and landscapes. Using erosion control methods such as retaining walls and vegetation, our team mitigates soil erosion and preserves natural landscapes.")
+        if new_string is None:
+            return jsonify({"error": "Missing 'new_string' parameter"}), 400
 
-    most_similar_string = similar_description(new_string, database_string)
+        database_string = (
+            "Efficient underground pipelining and ground digging services utilizing advanced trenchless methods. Our team employs techniques such as horizontal directional drilling to install pipelines with precision and minimal surface disruption",
+            "footpath enhancement services, including fencing installation and coloring for improved aesthetics and safety. Our skilled team utilizes advanced techniques, including ground excavation when necessary, to install durable fencing and apply vibrant coloring with precision and minimal disruption",
+            "Expert electrical installation services for bridges, ensuring safe and reliable power supply. Our skilled team utilizes advanced techniques and high-quality materials to implement electrical infrastructure with precision and durability",
+            "erosion control and slope stabilization services for construction sites and landscapes. Using erosion control methods such as retaining walls and vegetation, our team mitigates soil erosion and preserves natural landscapes."
+        )
 
-    return jsonify({"similar_project_description": most_similar_string})
+        most_similar_string = similar_description(new_string, database_string)
+
+        return jsonify({"similar_project_description": most_similar_string})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
     app.run(debug=True)
+

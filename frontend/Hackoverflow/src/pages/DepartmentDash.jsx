@@ -16,16 +16,16 @@ const DepartmentDash = () => {
        console.log(data);
   }
   const des = async() => {
-    const res = fetch("http://127.0.0.1:5000/nlp-model",{
+    const res = await fetch("http://127.0.0.1:5000/nlp-model",{
       method:"post",
       headers:{
         'content-type':"application/json"
     },
-    body: JSON.stringify({string_name:"Efficient street light installation and maintenance services, including ground digging for infrastructure. Our experienced team utilizes cutting-edge technology and meticulous planning to seamlessly install street lights, including ground excavation when necessary."})
+    body: JSON.stringify({new_string:"Efficient street light installation and maintenance services, including ground digging for infrastructure. Our experienced team utilizes cutting-edge technology and meticulous planning to seamlessly install street lights, including ground excavation when necessary."})
    })
-   const data = (await res).json()
+    
+   const data = await res.json()
    console.log(data);
-  
   }
   useEffect(()=>{ 
     // getData()
