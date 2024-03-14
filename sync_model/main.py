@@ -2,8 +2,10 @@ from flask import Flask, request, jsonify
 from sklearn.metrics.pairwise import cosine_similarity
 from sklearn.feature_extraction.text import TfidfVectorizer
 import spacy
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 
 nlp = spacy.load("en_core_web_sm")
