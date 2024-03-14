@@ -6,12 +6,12 @@ export const validateAdmin = async (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRETKEY);
     if (decoded) {
-        req.adminUsername = decoded.username
+      req.adminUsername = decoded.userName;
       next();
-    }else{
-        return;
+    } else {
+      return;
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
 };

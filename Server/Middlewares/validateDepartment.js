@@ -6,10 +6,10 @@ export const validateDepartment = async (req, res, next) => {
   console.log(token)
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRETKEY);
-    console.log(decoded)
+  
     if (decoded) {
         req.departmentUsername = decoded.userName
-        console.log(req.departmentUsername)
+     
       next();
     }else{
         return;

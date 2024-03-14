@@ -19,12 +19,11 @@ const departmentSchema = mongoose.Schema({
                 type:String,
                 required:true
             },
-
-            taskId:{
-                type:Number,
-                required:true
-            },
-            
+            syncedTask:[{
+                type:String,
+                
+            }],
+           
             description:{
                 type:String,
             },
@@ -55,10 +54,7 @@ const departmentSchema = mongoose.Schema({
                 type:Boolean,
                 default:false
             },
-            underGroundInfrastructure:{
-                type:Boolean,
-                default:false
-            },
+           
             demolition:{
                 type:Boolean,
                 default:false
