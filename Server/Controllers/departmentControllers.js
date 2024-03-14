@@ -25,7 +25,7 @@ export const departmentDashboardController = async (req, res) => {
 export const addWork = async (req, res) => {
   try {
     const request = req.body;
-    const data = request.data;
+    const data = req.body;
     const departmentUsername = req.departmentUsername;
     departmentUsername;
     const department = await departmentModels.findOne({

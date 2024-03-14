@@ -14,7 +14,7 @@ router.post(
   departmentDashboardController
 );
 
-router.post("/addWorks", validateDepartment, addWork);
-router.post("/myWorks", validateDepartment, myWorks);
+router.post("/department/addWorks", validateDepartment, addWork);
+router.post("/department/myWorks", validateDepartment, myWorks);
 
 export default router;
