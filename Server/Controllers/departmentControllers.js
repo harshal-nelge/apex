@@ -93,37 +93,15 @@ export const searchSimilarWork = async (req, res, next) => {
   const departmentData = await departmentModels.find({});
   departmentData.map((dataObject) => {
     const taskArray = dataObject.tasks;
+    const arrayToSend = []
     taskArray.map((taskF) => {
       if (taskF.taskLongitude == longitude && taskF.taskLatitude == latitude) {
-        const similarTask = new similarCordinatesTask({
-          taskLatitude:latitude,
-          taskLongitude:longitude,
-          task: data,
-          isSimilarWith: taskF,
-        });
-        const similarTaskReverse = new similarCordinatesTask({
-          latitude,
-          longitude,
-          task: taskF,
-          isSimilarWith: data,
-        });
-        similarTask.save();
-        similarTaskReverse.save();
+        
+        arrayToSend.push(taskF)
       }
     });
   });
-  next();
+    res.send(arrayToSend)
 };
 
-export const sendSimilarData = async (req, res) => {
-  const data = req.body;
-  const latitude = data.taskLatitude;
-  const longitude = data.taskLongitude;
-console.log(longitude)
-  const dataToSend = await similarCordinatesTask.find({
-    taskLatitude:latitude,
-    taskLongitude:longitude
-    
-  });
-  res.send(dataToSend)
-};
+
