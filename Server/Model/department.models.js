@@ -9,7 +9,7 @@ const departmentSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    password:{
+    password:{  
         type:String,
         required:true
     },
@@ -19,10 +19,7 @@ const departmentSchema = mongoose.Schema({
                 type:String,
                 required:true
             },
-            syncedTask:[{
-                type:String,
-                
-            }],
+           
            
             description:{
                 type:String,
