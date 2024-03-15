@@ -45,25 +45,14 @@ export const addWork = async (req, res) => {
         demolition: data.demolition || false,
         greenInfrastructure: data.greenInfrastructure || false,
         electricalServices: data.electricalServices || false,
-       
       };
 
       department.tasks.push(task);
-  
+
       await department.save();
 
-
-
-
-
-     
-      
-
       // Push the new task instance into the tasks array of the department document
-     
-  
 
-      
       res.send("Data added successfully").status(200);
     } else {
       res.send("Data not sent from user").status(400);
@@ -84,7 +73,8 @@ export const myWorks = async (req, res) => {
       username: departmentUsername,
     });
     if (department) {
-      const workArray = department.task;
+      const workArray = department.tasks;
+      console.log(workArray);
       res.send(workArray).status(200);
       return;
     }
@@ -95,32 +85,30 @@ export const myWorks = async (req, res) => {
   }
 };
 
-export const searchSimilarWork = async (req, res)=>{
+export const searchSimilarWork = async (req, res) => {
   const data = req.body;
   const latitude = data.taskLatitude;
   const longitude = data.taskLongitude;
-  
+
   const departmentData = await departmentModels.find({});
- departmentData.map((dataObject)=>{
-  const taskArray = dataObject.tasks
-  taskArray.map((taskF)=>{
-if(taskF.taskLongitude == longitude&& taskF.taskLatitude==latitude){
-  const similarTask = new similarCordinatesTask({
-    task:data,
-    isSimilarWith:taskF
+  departmentData.map((dataObject) => {
+    const taskArray = dataObject.tasks;
+    taskArray.map((taskF) => {
+      if (taskF.taskLongitude == longitude && taskF.taskLatitude == latitude) {
+        const similarTask = new similarCordinatesTask({
+          task: data,
+          isSimilarWith: taskF,
+        });
+        const similarTaskReverse = new similarCordinatesTask({
+          task: taskF,
+          isSimilarWith: data,
+        });
+        similarTask.save();
+      }
+    });
   });
-  const similarTaskReverse = new similarCordinatesTask({
-    task:taskF,
-    isSimilarWith:data
-  })
-   similarTask.save()
-}
-  })
- })
-  console.log(departmentData)
-  console.log(taskArray)
-
-
+  console.log(departmentData);
+  console.log(taskArray);
 
   for (let index = 0; index < taskArray.length; index++) {
     const taskFromArray = taskArray[index];
@@ -129,8 +117,6 @@ if(taskF.taskLongitude == longitude&& taskF.taskLatitude==latitude){
       taskFromArray.taskLongitude == longitude &&
       taskFromArray.taskLatitude == latitude
     ) {
-     
     }
   }
-
-}
+};
