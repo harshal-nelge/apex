@@ -1,24 +1,21 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const similarCordinatesTasksSchema = mongoose.Schema({
-    longitude:{
-        type:String
+    longitude: {
+        type: String
     },
-    latitude:{
-        type:String
-
+    latitude: {
+        type: String
     },
-
-    task:{
-        type:String
+    task: {
+        type: mongoose.Schema.Types.Mixed  // Change the type to allow storing objects
     },
-    isSimilarWith:{
-        type:String
+    isSimilarWith: {
+        type: mongoose.Schema.Types.Mixed  // Change the type to allow storing objects
     }
-
 },
 {
-    timestamps:true
-})
+    timestamps: true
+});
 
 export default mongoose.model("similarCordinateTasks", similarCordinatesTasksSchema);

@@ -71,6 +71,7 @@ export const myWorks = async (req, res) => {
     const department = await departmentModels.findOne({
       username: departmentUsername,
     });
+    console.log(department)
     if (department) {
       const workArray = department.tasks;
       console.log(workArray);
@@ -95,8 +96,8 @@ export const searchSimilarWork = async (req, res, next) => {
     taskArray.map((taskF) => {
       if (taskF.taskLongitude == longitude && taskF.taskLatitude == latitude) {
         const similarTask = new similarCordinatesTask({
-          latitude,
-          longitude,
+          taskLatitude:latitude,
+          taskLongitude:longitude,
           task: data,
           isSimilarWith: taskF,
         });
@@ -118,10 +119,11 @@ export const sendSimilarData = async (req, res) => {
   const data = req.body;
   const latitude = data.taskLatitude;
   const longitude = data.taskLongitude;
-
+console.log(longitude)
   const dataToSend = await similarCordinatesTask.find({
-    latitude,
-    longitude,
+    taskLatitude:latitude,
+    taskLongitude:longitude
+    
   });
   res.send(dataToSend)
 };
