@@ -4,6 +4,7 @@ import {
   addWork,
   departmentDashboardController,
   myWorks,
+  searchSimilarWork,
 } from "../Controllers/departmentControllers.js";
 
 const router = express.Router();
@@ -16,5 +17,6 @@ router.post(
 
 router.post("/department/addWorks", validateDepartment, addWork);
 router.post("/department/myWorks", validateDepartment, myWorks);
+router.post("department/getSimilarWorks",searchSimilarWork,)
 
 export default router;

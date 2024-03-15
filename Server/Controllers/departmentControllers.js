@@ -25,7 +25,6 @@ export const departmentDashboardController = async (req, res) => {
 
 export const addWork = async (req, res) => {
   try {
-    const request = req.body;
     const data = req.body;
     const departmentUsername = req.departmentUsername;
     departmentUsername;
@@ -85,7 +84,7 @@ export const myWorks = async (req, res) => {
   }
 };
 
-export const searchSimilarWork = async (req, res) => {
+export const searchSimilarWork = async (req, res, next) => {
   const data = req.body;
   const latitude = data.taskLatitude;
   const longitude = data.taskLongitude;
@@ -96,27 +95,33 @@ export const searchSimilarWork = async (req, res) => {
     taskArray.map((taskF) => {
       if (taskF.taskLongitude == longitude && taskF.taskLatitude == latitude) {
         const similarTask = new similarCordinatesTask({
+          latitude,
+          longitude,
           task: data,
           isSimilarWith: taskF,
         });
         const similarTaskReverse = new similarCordinatesTask({
+          latitude,
+          longitude,
           task: taskF,
           isSimilarWith: data,
         });
         similarTask.save();
+        similarTaskReverse.save();
       }
     });
   });
-  console.log(departmentData);
-  console.log(taskArray);
+  next();
+};
 
-  for (let index = 0; index < taskArray.length; index++) {
-    const taskFromArray = taskArray[index];
+export const sendSimilarData = async (req, res) => {
+  const data = req.body;
+  const latitude = data.taskLatitude;
+  const longitude = data.taskLongitude;
 
-    if (
-      taskFromArray.taskLongitude == longitude &&
-      taskFromArray.taskLatitude == latitude
-    ) {
-    }
-  }
+  const dataToSend = await similarCordinatesTask.find({
+    latitude,
+    longitude,
+  });
+  res.send(dataToSend)
 };

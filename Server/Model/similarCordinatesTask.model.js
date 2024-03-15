@@ -1,6 +1,13 @@
 import mongoose from "mongoose"
 
 const similarCordinatesTasksSchema = mongoose.Schema({
+    longitude:{
+        type:String
+    },
+    latitude:{
+        type:String
+
+    },
 
     task:{
         type:String
@@ -9,7 +16,8 @@ const similarCordinatesTasksSchema = mongoose.Schema({
         type:String
     }
 
-},{
+},
+{
     timestamps:true
 })
 
