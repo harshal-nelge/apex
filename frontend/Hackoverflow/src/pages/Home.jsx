@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
+
 const Home = () => {
     const navigate = useNavigate()
     const toAdmin =  ()=>{
             navigate('/adminAuth')
     }
     const toDepartment = () =>{
-        navigate('/departmentDashBoard')
+        navigate('/departmentAuth')
     }
     
     
@@ -19,6 +20,7 @@ const Home = () => {
 
       </div>
     </div>
+    
   )}
 
 

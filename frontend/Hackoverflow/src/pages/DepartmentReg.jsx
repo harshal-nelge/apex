@@ -44,9 +44,10 @@ const DepartmentReg = () => {
       }
     }
   return (
-    <div className="flex  justify-center items-center h-screen w-full bg-gray-100 ">
-      <div className=" p-8 border  border-gray-300 rounded-lg shadow-2xl flex justify-center items-center ">
-      <form   className="flex flex-col space-y-8 ">
+    <div className="flex flex-col justify-center items-center h-screen w-full bg-gray-100 "> 
+    <h1 className=' my-8 text-3xl font-semibold'>{!islogin? "Register" : "Login"}</h1>
+      <div className=" px-8 py-16 border  border-gray-300 rounded-lg shadow-2xl flex justify-center items-center w-1/4 ">
+      <form   className="flex flex-col space-y-8  w-full">
       <input
         type="text"
         placeholder="Name"
@@ -61,13 +62,13 @@ const DepartmentReg = () => {
       />}
       <input
         type="password"
-        placeholder="password"
+        placeholder="Password"
         ref={password}
         className="  border border-slate-400 shadow-xl placeholder-slate-500 p-2 rounded-lg "
       />
-      <div className=' flex space-x-3'>
-      <button onClick={handleSubmit} className="px-4 py-2  bg-slate-900 border border-slate-900 text-white rounded-lg hover:bg-white hover:text-slate-900">Submit</button>
-      <div  className="px-4 py-2  bg-white border border-black text-slate-900 rounded-lg hover:bg-slate-900 hover:text-white " onClick={toogle}>{islogin? "Register" : "Login"}</div>
+      <div className=' flex space-x-3 w-full'>
+      <button onClick={handleSubmit} className="px-4 py-2  w-1/2 bg-slate-900 border border-slate-900 text-white rounded-lg hover:bg-white hover:text-slate-900">Submit</button>
+      <div  className="px-4 py-2 w-1/2 text-center bg-white border border-black text-slate-900 rounded-lg hover:bg-slate-900 hover:text-white " onClick={toogle}>{islogin? "Register" : "Login"}</div>
       </div>
       </form>
       </div>

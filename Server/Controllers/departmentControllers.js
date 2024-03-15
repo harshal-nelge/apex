@@ -85,7 +85,7 @@ export const myWorks = async (req, res) => {
   }
 };
 
-export const searchSimilarWork = async (req, res, next) => {
+export const searchSimilarWork = async (req, res) => {
   const data = req.body;
   const latitude = data.taskLatitude;
   const longitude = data.taskLongitude;
@@ -103,5 +103,4 @@ export const searchSimilarWork = async (req, res, next) => {
   });
     res.send(arrayToSend)
 };
-
 
