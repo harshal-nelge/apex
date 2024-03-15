@@ -89,11 +89,11 @@ export const searchSimilarWork = async (req, res) => {
   const data = req.body;
   const latitude = data.taskLatitude;
   const longitude = data.taskLongitude;
-
+  const arrayToSend = []
   const departmentData = await departmentModels.find({});
   departmentData.map((dataObject) => {
     const taskArray = dataObject.tasks;
-    const arrayToSend = []
+   
     taskArray.map((taskF) => {
       if (taskF.taskLongitude == longitude && taskF.taskLatitude == latitude) {
         
