@@ -42,7 +42,7 @@ const DashMain = () => {
     const data = await res.json();
     // console.log(data);
    
-    //   const nlpres = await fetch("http://127.0.0.1:5000/nlp-model",{
+    //   const nlpres = await fetch("http://localhost:4000/nlp-model",{
     //     method:"post",
     //     headers:{
     //       'content-type':"application/json"
@@ -61,9 +61,10 @@ const DashMain = () => {
   return (
     
     <div className=" flex items-center justify-center bg-gray-100 w-[80%]">
-    <form onSubmit={handleSubmit} className=" flex flex-col space-y-6 bg-white p-8 rounded-lg shadow-xl">
-      <input type="text" placeholder="Name" ref={name} className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" />
-      <textarea placeholder="Description" ref={des} className="h-32 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 resize-none"></textarea>
+    <form onSubmit={handleSubmit} className=" flex flex-col space-y-6 bg-white p-8 rounded-lg shadow-xl w-[90%]">
+      <input type="text" placeholder="Name" ref={name} className="px-4 py-2 placeholder-slate-600 font-semibold border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500" />
+      <textarea placeholder="Description" ref={des} className="h-32 px-4 py-2 placeholder-slate-600 font-semibold border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 resize-none"></textarea>
+      <iframe src="https://apex-gemini.onrender.com/" frameborder="0" className=" h-[60vh]"></iframe>
       <label>Choose Your Location</label>
       <Map   /> 
       <div className=" space-y-1">

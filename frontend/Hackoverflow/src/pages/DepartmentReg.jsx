@@ -1,8 +1,11 @@
 import React, { useRef, useState } from 'react'
 import Cookies from 'js-cookie'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addDepartment, addUserName } from '@/utlis/userSlice'
 
 const DepartmentReg = () => {
+    const dispatch = useDispatch()
     const [islogin,setIsLogin] = useState(true)
     const navigate = useNavigate()
     const userName = useRef()
@@ -15,6 +18,8 @@ const DepartmentReg = () => {
     }
     const handleSubmit =  async(e)=> {
       e.preventDefault()
+      dispatch(addUserName(userName.current.value))
+      dispatch(addDepartment(departmentName.current.value))
       if(!islogin){
       const res = await fetch("http://localhost:5000/auth/department/register",{
         method:"post",

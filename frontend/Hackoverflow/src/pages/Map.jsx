@@ -23,7 +23,7 @@ const Map = () => {
     return(<p>Not Loaded</p>)
  }else{
   return (
-    <div className="w-full h-60">
+    <div className="w-full h-[60vh]">
     <GoogleMap
           center={center}
           zoom={15}
