@@ -6,7 +6,7 @@ import { addDepartment, addUserName } from '@/utlis/userSlice'
 
 const DepartmentReg = () => {
     const dispatch = useDispatch()
-    const [islogin,setIsLogin] = useState(true)
+    const [islogin,setIsLogin] = useState(false)
     const navigate = useNavigate()
     const userName = useRef()
     const departmentName = useRef()
